@@ -1,4 +1,5 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { fetchContacts } from './operations';
 
 const contactsInitialState = {
   contacts: [],
@@ -28,6 +29,14 @@ const contactsSlice = createSlice({
         conatct => conatct.id === action.payload
       );
       state.contacts.splice(index, 1);
+    },
+  },
+  extraReducers: {
+    [fetchContacts.pending]() {
+      console.log('PENDING');
+    },
+    [fetchContacts.fulfilled](state, action) {
+      console.log('payload:', action.payload);
     },
   },
 });
