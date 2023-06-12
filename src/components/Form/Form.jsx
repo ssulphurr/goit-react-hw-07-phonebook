@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import css from './Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { getContacts } from 'redux/selectors';
 
 export default function Form() {
@@ -43,7 +43,7 @@ export default function Form() {
       alert(`${name} or ${number} is already in contacts`);
       return;
     } else {
-      dispatch(addContact(name, number));
+      dispatch(addContact({ name, number }));
     }
 
     reset();
