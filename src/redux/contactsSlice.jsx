@@ -3,6 +3,8 @@ import { fetchContacts } from './operations';
 
 const contactsInitialState = {
   contacts: [],
+  isLoading: false,
+  error: null,
 };
 
 const contactsSlice = createSlice({
@@ -36,7 +38,7 @@ const contactsSlice = createSlice({
       console.log('PENDING');
     },
     [fetchContacts.fulfilled](state, action) {
-      console.log('payload:', action.payload);
+      state.contacts = action.payload;
     },
   },
 });

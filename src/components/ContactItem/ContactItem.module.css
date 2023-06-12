@@ -1,11 +1,18 @@
 .contact__item {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contact__item p {
+  flex-basis: 60%;
 }
 
 .btn__delete {
   cursor: pointer;
   width: 120px;
+  height: 24px;
   padding: 4px 12px;
   background-color: white;
   border-radius: 4px;
