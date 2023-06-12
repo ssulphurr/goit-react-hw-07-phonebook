@@ -2,16 +2,18 @@ import Section from './Section/Section';
 import Form from './Form/Form';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
+import { getIsLoading } from 'redux/selectors';
 
 export function App() {
   const dispatch = useDispatch();
+  const isLoading = useSelector(getIsLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
-  });
+  }, [dispatch]);
 
   return (
     <>
@@ -21,7 +23,8 @@ export function App() {
 
       <Section title="Contacts">
         <Filter />
-        <ContactList />
+        {isLoading && <h2>Loading...</h2>}
+        {!isLoading && <ContactList />}
       </Section>
     </>
   );
